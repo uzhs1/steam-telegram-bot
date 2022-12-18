@@ -4,16 +4,17 @@ import logging
 from aiogram import Bot, Dispatcher
 
 from db import base, models
-from config import config
+from config import app_config
+from users import handlers
 
 # Basic bot configuration
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=config.bot_token.get_secret_value())
+bot = Bot(token=app_config.bot_token.get_secret_value())
 dp = Dispatcher()
 
 
 async def main():
-    await base.create_tables()
+    dp.include_router(handlers.router)
     await dp.start_polling(bot)
 
 

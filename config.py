@@ -17,4 +17,4 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8'
 
 
-config = Settings()
+app_config = Settings()
